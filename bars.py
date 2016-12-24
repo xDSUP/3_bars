@@ -17,17 +17,17 @@ def load_data(filepath):
     return bar_list_parsed
 
 def get_biggest_bar(bar_info):
-    global MAX
+    global MAX_SEATS
     global BIGGEST_BAR
-    if bar_info['SeatsCount'] > MAX:
-        MAX = bar_info['SeatsCount']
+    if bar_info['SeatsCount'] > MAX_SEATS:
+        MAX_SEATS = bar_info['SeatsCount']
         BIGGEST_BAR = bar_info['Name']
 
 def get_smallest_bar(bar_info):
-    global MIN
+    global MIN_SEATS
     global SMALLEST_BAR
-    if bar_info['SeatsCount'] < MIN:
-        MIN = bar_info['SeatsCount']
+    if bar_info['SeatsCount'] < MIN_SEATS:
+        MIN_SEATS = bar_info['SeatsCount']
         SMALLEST_BAR = bar_info['Name']
 
 def get_closest_bar(data, longitude, latitude):
@@ -44,7 +44,7 @@ def get_closest_bar(data, longitude, latitude):
 
 if __name__ == '__main__':
 
-    MAX = 0; MIN = 100; MIN_OFFSET_LATITUDE = 100; MIN_OFFSET_LONGITUDE = 100
+    MAX_SEATS = 0; MIN_SEATS = 100; MIN_OFFSET_LATITUDE = 100; MIN_OFFSET_LONGITUDE = 100
     BIGGEST_BAR = None; SMALLEST_BAR = None; CLOSEST_BAR = None
     bar_list = load_data("data.json")
     longitude,latitude = map(float,input('Input coordinates(Longitude,Latitude):  ').split(","))
