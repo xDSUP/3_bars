@@ -50,4 +50,4 @@ if __name__ == '__main__':
             get_closest_bar(data[number], longitude, latitude)
 
             
-    print(MAXname,MINname,nearest_bar.join(' ')
+    print(MAXname,MINname,nearest_bar.join(' '))
