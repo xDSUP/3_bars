@@ -17,35 +17,35 @@ def load_data(filepath):
     return bar_list_parsed
 
 def get_biggest_bar(bar_info):
-    global MAX_SEATS
-    global BIGGEST_BAR
-    if bar_info['SeatsCount'] > MAX_SEATS:
-        MAX_SEATS = bar_info['SeatsCount']
-        BIGGEST_BAR = bar_info['Name']
+    global max_seats
+    global biggest_bar
+    if bar_info['SeatsCount'] > max_seats:
+        max_seats = bar_info['SeatsCount']
+        biggest_bar = bar_info['Name']
 
 def get_smallest_bar(bar_info):
-    global MIN_SEATS
-    global SMALLEST_BAR
-    if bar_info['SeatsCount'] < MIN_SEATS:
-        MIN_SEATS = bar_info['SeatsCount']
-        SMALLEST_BAR = bar_info['Name']
+    global min_seats
+    global smallest_bar
+    if bar_info['SeatsCount'] < min_seats:
+        min_seats = bar_info['SeatsCount']
+        smallest_bar = bar_info['Name']
 
 def get_closest_bar(data, longitude, latitude):
-    global MIN_OFFSET_LATITUDE
-    global MIN_OFFSET_LONGITUDE
-    global CLOSEST_BAR
+    global min_offset_latitude
+    global min_offset_longitude
+    global closest_bar
     offset_latitude = fabs(latitude - float(data['Latitude_WGS84']))
     offset_longitude = fabs(longitude - float(data['Longitude_WGS84']))
-    if offset_latitude < MIN_OFFSET_LATITUDE and offset_longitude < MIN_OFFSET_LONGITUDE:
-        MIN_OFFSET_LATITUDE = offset_latitude
-        MIN_OFFSET_LONGITUDE = offset_longitude
-        CLOSEST_BAR = data['Name']  
+    if offset_latitude < min_offset_latitude and offset_longitude < min_offset_longitude:
+        min_offset_latitude = offset_latitude
+        min_offset_longitude = offset_longitude
+        closest_bar = data['Name']  
     
 
 if __name__ == '__main__':
 
-    MAX_SEATS = 0; MIN_SEATS = 100; MIN_OFFSET_LATITUDE = 100; MIN_OFFSET_LONGITUDE = 100
-    BIGGEST_BAR = None; SMALLEST_BAR = None; CLOSEST_BAR = None
+    max_seats = 0; min_seats = 100; min_offset_latitude = 100; min_offset_longitude = 100
+    biggest_bar = None; smallest_bar = None; closest_bar = None
     bar_list = load_data("data.json")
     longitude,latitude = map(float,input('Input coordinates(Longitude,Latitude):  ').split(","))
 
@@ -55,7 +55,7 @@ if __name__ == '__main__':
             get_smallest_bar(bar_list[number])
             get_closest_bar(bar_list[number], longitude, latitude)
 
-    result_program = printTXT.format(biggest_bar = BIGGEST_BAR,
-                          smallest_bar = SMALLEST_BAR,
-                          closest_bar = CLOSEST_BAR)       
+    result_program = print_txt.format(biggest_bar = biggest_bar,
+                          smallest_bar = smallest_bar,
+                          closest_bar = closest_bar)       
     print(result_program)
