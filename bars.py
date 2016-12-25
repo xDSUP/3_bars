@@ -1,7 +1,7 @@
 import json
 from math import fabs
 
-printTXT = """
+print_txt = """
 
 the biggest bar: {biggest_bar} .
 the smallest bar: {smallest_bar} .
